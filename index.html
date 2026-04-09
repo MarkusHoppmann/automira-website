@@ -1,193 +1,939 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Automira – Intelligente Automatisierung</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automira – Intelligente Automatisierung für Kundenanfragen</title>
+  <meta name="description" content="Automira automatisiert die Bearbeitung eingehender Kundenanfragen – von Website-Formularen über E-Mails bis zum Ticketsystem. Für schnellere Reaktionen, bessere Lead-Qualifizierung und mehr Abschlüsse." />
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --text: #111827;
+      --muted: #6b7280;
+      --bg: #ffffff;
+      --surface: #f3f4f6;
+      --surface-2: #eff6ff;
+      --border: #e5e7eb;
+      --success: #16a34a;
+      --shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+      --radius: 18px;
+      --max-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      background: #f8f9fb;
-      color: #222;
+      padding: 0;
     }
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 40px 20px;
-      text-align: center;
+    html {
+      scroll-behavior: smooth;
     }
 
-    h1 {
-      font-size: 36px;
-      margin-bottom: 20px;
-    }
-
-    p {
-      font-size: 18px;
+    body {
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--bg);
       line-height: 1.6;
     }
 
-    .button {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 15px 25px;
-      background: #4f46e5;
-      color: white;
+    a {
+      color: inherit;
       text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max-width));
+      margin: 0 auto;
     }
 
     .section {
-      margin-top: 60px;
+      padding: 88px 0;
     }
 
-    input,
-    textarea {
-      width: 100%;
-      max-width: 600px;
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
-      box-sizing: border-box;
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: var(--surface-2);
+      padding: 8px 14px;
+      border-radius: 999px;
+      margin-bottom: 18px;
     }
 
-    button.button {
-      border: none;
+    h1, h2, h3 {
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+    }
+
+    p.lead {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    p + p {
+      margin-top: 12px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: 0.2s ease;
+      border: 1px solid transparent;
       cursor: pointer;
     }
 
-    button.button:hover {
-      opacity: 0.95;
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: var(--shadow);
     }
 
-    footer {
-      text-align: center;
-      padding: 30px 20px 40px;
-      font-size: 14px;
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
     }
 
-    footer a {
-      color: #4f46e5;
-      text-decoration: none;
-      margin: 0 8px;
+    .btn-secondary {
+      border-color: var(--border);
+      background: white;
+    }
+
+    .btn-secondary:hover {
+      background: var(--surface);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.9);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      list-style: none;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .hero {
+      padding: 72px 0 48px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .dashboard {
+      display: grid;
+      gap: 16px;
+    }
+
+    .dash-top {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .metric, .mini-card, .card, .price-card, .source-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .metric {
+      padding: 18px;
+      background: var(--surface-2);
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.5rem;
+      margin-bottom: 4px;
+    }
+
+    .mini-card {
+      padding: 18px;
+    }
+
+    .mini-card ul {
+      list-style: none;
+      margin-top: 10px;
+    }
+
+    .mini-card li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+
+    .mini-card li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    .badge-high {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .badge-medium {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .badge-low {
+      background: #e5e7eb;
+      color: #374151;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 38px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 38px;
+    }
+
+    .card,
+    .source-card,
+    .price-card {
+      padding: 28px;
+    }
+
+    .card p,
+    .source-card p,
+    .price-card p {
+      color: var(--muted);
+    }
+
+    .card-icon,
+    .source-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface-2);
+      color: var(--primary);
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .step {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .step-number {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .section-alt {
+      background: #f9fafb;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .price-card.featured {
+      border: 2px solid var(--primary);
+      transform: translateY(-6px);
+      position: relative;
+    }
+
+    .featured-tag {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: var(--primary);
+      color: white;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+
+    .price {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin: 16px 0 4px;
+    }
+
+    .price-card ul {
+      list-style: none;
+      margin: 22px 0 28px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .price-card li {
+      padding-left: 28px;
+      position: relative;
+      color: var(--muted);
+    }
+
+    .price-card li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--success);
+      font-weight: 800;
+    }
+
+    .form-wrap {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 26px;
+      align-items: start;
+      margin-top: 40px;
+    }
+
+    .info-panel,
+    .form-panel {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-points {
+      list-style: none;
+      display: grid;
+      gap: 16px;
+      margin-top: 22px;
+      color: var(--muted);
+    }
+
+    form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    label {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font: inherit;
+      color: var(--text);
+      background: white;
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: 2px solid rgba(37, 99, 235, 0.16);
+      border-color: var(--primary);
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .small-note {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .footer {
+      padding: 28px 0 50px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .footer-inner {
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid,
+      .form-wrap,
+      .grid-3,
+      .grid-4,
+      .steps,
+      .pricing,
+      .dash-top {
+        grid-template-columns: 1fr;
+      }
+
+      .price-card.featured {
+        transform: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+        font-size: 0.95rem;
+      }
+
+      .section {
+        padding: 70px 0;
+      }
+
+      .hero {
+        padding-top: 40px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        width: min(calc(100% - 28px), var(--max-width));
+      }
     }
   </style>
 </head>
 <body>
-
-  <div class="container">
-
-    <h1>Automira</h1>
-    <p><strong>Intelligente Automatisierung für Kundenanfragen</strong></p>
-    <p>Automira analysiert und beantwortet eingehende Kundenanfragen automatisch – damit kein Lead verloren geht.</p>
-
-    <a href="mailto:info@automira.de" class="button">Demo anfragen</a>
-
-    <div class="section">
-      <h2>Das Problem</h2>
-      <p>Viele Unternehmen verlieren täglich Anfragen, weil sie nicht schnell genug reagieren.</p>
+  <header>
+    <div class="container nav">
+      <a href="#top" class="logo">Lead<span>Automation</span></a>
+      <ul class="nav-links">
+        <li><a href="#loesung">Lösung</a></li>
+        <li><a href="#bausteine">Bausteine</a></li>
+        <li><a href="#preise">Preise</a></li>
+        <li><a href="#kontakt">Demo</a></li>
+      </ul>
     </div>
+  </header>
 
-    <div class="section">
-      <h2>Die Lösung</h2>
-      <p>Automira übernimmt die Analyse und Beantwortung Ihrer Kundenanfragen – vollautomatisch.</p>
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">KI-gestützte Leadbearbeitung für Vertrieb & Service</span>
+          <h1>Mehr Anfragen. Weniger Aufwand. Mehr Abschlüsse.</h1>
+          <p class="lead">
+            Wir automatisieren die Bearbeitung eingehender Anfragen – von Website-Formularen über E-Mails bis zum Ticketsystem. So werden Leads schneller qualifiziert, priorisiert und passend beantwortet.
+          </p>
+          <div class="btn-row">
+            <a href="#kontakt" class="btn btn-primary">Kostenlose Demo anfragen</a>
+            <a href="#preise" class="btn btn-secondary">Pakete ansehen</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="dashboard">
+            <div class="dash-top">
+              <div class="metric">
+                <span class="muted">Reaktionszeit</span>
+                <strong>&lt; 60 Sek.</strong>
+                <span class="muted">automatische Erstreaktion</span>
+              </div>
+              <div class="metric">
+                <span class="muted">Lead-Scoring</span>
+                <strong>1–10</strong>
+                <span class="muted">Priorisierung nach Potenzial</span>
+              </div>
+              <div class="metric">
+                <span class="muted">Quellen</span>
+                <strong>3+</strong>
+                <span class="muted">Formular, E-Mail, Ticketsystem</span>
+              </div>
+            </div>
+
+            <div class="mini-card">
+              <h3>Aktuelle Anfragen</h3>
+              <ul>
+                <li>
+                  <span>Website-Formular · Angebotsanfrage</span>
+                  <span class="badge badge-high">High Lead</span>
+                </li>
+                <li>
+                  <span>info@ · Produktanfrage</span>
+                  <span class="badge badge-medium">Medium</span>
+                </li>
+                <li>
+                  <span>Ticket · Supportfall</span>
+                  <span class="badge badge-low">Low</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="loesung">
+      <div class="container">
+        <span class="eyebrow">Das Problem</span>
+        <h2>Warum gehen Unternehmen bei Anfragen Umsatzpotenzial verloren?</h2>
+        <p class="lead">
+          Viele Anfragen werden zu spät bearbeitet, falsch priorisiert oder nicht passend beantwortet. Genau hier setzt deine Lösung an: Anfragen werden zentral erfasst, automatisch bewertet und gezielt weiterverarbeitet.
+        </p>
+
+        <div class="grid-4">
+          <article class="card">
+            <div class="card-icon">01</div>
+            <h3>Langsame Reaktion</h3>
+            <p>Interessenten warten zu lange auf eine Rückmeldung und springen ab, bevor ein Vertriebsgespräch stattfindet.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">02</div>
+            <h3>Keine Priorisierung</h3>
+            <p>Wertvolle Leads und allgemeine Anfragen landen im gleichen Posteingang ohne klare Bewertung.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">03</div>
+            <h3>Unpassende Antworten</h3>
+            <p>Standardtexte passen nicht zu Bedarf, Budget oder Dringlichkeit des anfragenden Kunden.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">04</div>
+            <h3>Zu viel manuelle Arbeit</h3>
+            <p>Vertrieb und Service investieren Zeit in Routinebearbeitung statt in Abschluss und Kundenpflege.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="bausteine">
+      <div class="container">
+        <span class="eyebrow">Deine Lösung</span>
+        <h2>Modular aufgebaut. Technisch sauber. Vertrieblich klar.</h2>
+        <p class="lead">
+          Die Lösung besteht aus kombinierbaren Bausteinen. Dadurch lässt sie sich je nach Kunde als Starter-, Professional- oder Premium-Paket verkaufen.
+        </p>
+
+        <div class="grid-3">
+          <article class="source-card">
+            <div class="source-icon">A</div>
+            <h3>Lead-Erfassung</h3>
+            <p>Erfassung über Website-Formular, definierte E-Mail-Adresse, Ticketsystem oder API/Webhook. Alle Quellen laufen in einem einheitlichen Prozess zusammen.</p>
+          </article>
+          <article class="source-card">
+            <div class="source-icon">B</div>
+            <h3>KI-Analyse & Scoring</h3>
+            <p>Die Anfrage wird nach Inhalt, Kaufinteresse, Dringlichkeit, Budget und Kategorie analysiert. Daraus entsteht ein Score und eine Handlungsempfehlung.</p>
+          </article>
+          <article class="source-card">
+            <div class="source-icon">C</div>
+            <h3>Automatische Reaktion</h3>
+            <p>Je nach Anfrage wird automatisch geantwortet, intern benachrichtigt, eine Rückfrage gestellt oder bereits ein passendes Angebot vorbereitet.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <span class="eyebrow">So funktioniert es</span>
+        <h2>Von der eingehenden Anfrage bis zur passenden Aktion in 3 Schritten</h2>
+        <div class="steps">
+          <article class="step">
+            <div class="step-number">1</div>
+            <h3>Anfrage erfassen</h3>
+            <p>Die Anfrage wird über Formular, E-Mail oder Ticketsystem abgeholt und mit den relevanten Daten in den Workflow übergeben.</p>
+          </article>
+          <article class="step">
+            <div class="step-number">2</div>
+            <h3>Inhalt verstehen</h3>
+            <p>Die KI erkennt Anliegen, Kategorie, Dringlichkeit, potenziellen Wert und entscheidet, ob Rückfrage, Angebot oder Eskalation nötig ist.</p>
+          </article>
+          <article class="step">
+            <div class="step-number">3</div>
+            <h3>Passend reagieren</h3>
+            <p>Das System verschickt die richtige Antwort, erstellt einen internen Hinweis oder bereitet ein individuelles Angebot vor.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <span class="eyebrow">Formular & Eingangskanäle</span>
+        <h2>Das Formular sollte mehr können als nur Name und Nachricht</h2>
+        <p class="lead">
+          Gute Automatisierung braucht gute Eingangsdaten. Deshalb sollte das Formular und die technische Lead-Erfassung bereits wichtige Steuerinformationen mitgeben.
+        </p>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-icon">Q1</div>
+            <h3>Quelle erkennen</h3>
+            <p>Wurde die Anfrage über Website, E-Mail, Kampagne, Empfehlung oder ein Ticketsystem ausgelöst?</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">Q2</div>
+            <h3>Art der Anfrage</h3>
+            <p>Geht es um Angebot, Beratung, Support oder ein allgemeines Interesse? Das steuert den weiteren Prozess.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">Q3</div>
+            <h3>Budget & Dringlichkeit</h3>
+            <p>Diese Felder helfen dabei, echte Verkaufschancen schneller zu identifizieren und sinnvoll zu priorisieren.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="preise">
+      <div class="container">
+        <span class="eyebrow">Pakete & Preismodell</span>
+        <h2>Einfach bepreisen. Klar verkaufen.</h2>
+        <p class="lead">
+          Diese Struktur kannst du für deine Angebots- und Website-Kommunikation verwenden. Preise sind als Platzhalter gedacht und können an deine Zielkunden angepasst werden.
+        </p>
+
+        <div class="pricing">
+          <article class="price-card">
+            <h3>Starter</h3>
+            <p>Für kleine Unternehmen mit einer Anfragequelle.</p>
+            <div class="price">ab 99 €<span class="muted" style="font-size:1rem; font-weight:600;"> / Monat</span></div>
+            <ul>
+              <li>1 Eingangskanal</li>
+              <li>Basis-Automation</li>
+              <li>Einfache Standardantworten</li>
+              <li>Grundlegende Lead-Qualifizierung</li>
+            </ul>
+            <a href="#kontakt" class="btn btn-secondary">Starter anfragen</a>
+          </article>
+
+          <article class="price-card featured">
+            <span class="featured-tag">Empfohlen</span>
+            <h3>Professional</h3>
+            <p>Für Unternehmen mit mehreren Quellen und aktivem Vertrieb.</p>
+            <div class="price">ab 249 €<span class="muted" style="font-size:1rem; font-weight:600;"> / Monat</span></div>
+            <ul>
+              <li>Mehrere Eingangskanäle</li>
+              <li>Lead-Scoring & Priorisierung</li>
+              <li>Follow-up-Logik</li>
+              <li>Interne Benachrichtigungen</li>
+              <li>Vorbereitung individueller Antworten</li>
+            </ul>
+            <a href="#kontakt" class="btn btn-primary">Professional anfragen</a>
+          </article>
+
+          <article class="price-card">
+            <h3>Premium</h3>
+            <p>Für individuelle Prozesse mit Angebotsautomatisierung.</p>
+            <div class="price">ab 499 €<span class="muted" style="font-size:1rem; font-weight:600;"> / Monat</span></div>
+            <ul>
+              <li>Komplette Prozesslogik</li>
+              <li>Ticketsystem / E-Mail / Formular</li>
+              <li>Angebotsvorbereitung oder Angebotsversand</li>
+              <li>Individuelle Regeln je Kundentyp</li>
+              <li>Integration in CRM oder Tabellen</li>
+            </ul>
+            <a href="#kontakt" class="btn btn-secondary">Premium anfragen</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="kontakt">
+      <div class="container">
+        <span class="eyebrow">Demo anfragen</span>
+        <h2>Erzähl kurz, wie deine Anfragen heute reinkommen</h2>
+        <p class="lead">
+          Genau diese Angaben helfen später auch bei der technischen Konzeption: Kommen Anfragen über ein Formular, eine bestimmte E-Mail-Adresse oder bereits über ein bestehendes Ticketsystem?
+        </p>
+
+        <div class="form-wrap">
+          <aside class="info-panel">
+            <h3>Was wir vorab verstehen sollten</h3>
+            <ul class="contact-points">
+              <li>Welche Anfragequellen aktuell genutzt werden</li>
+              <li>Ob bereits automatische Antworten existieren</li>
+              <li>Wie individuell Angebote oder Rückfragen sein sollen</li>
+              <li>Welche Art von Leads priorisiert werden muss</li>
+            </ul>
+            <p class="small-note" style="margin-top: 20px;">
+              Du kannst dieses Formular direkt an deinen Make-Webhook anbinden oder die Daten zunächst an ein einfaches Backend bzw. Form-Handling übergeben.
+            </p>
+          </aside>
+
+          <div class="form-panel">
+            <form id="contact-form">
+              <div class="form-grid">
+                <div>
+                  <label for="name">Name</label>
+                  <input id="name" name="name" type="text" placeholder="Max Mustermann" />
+                </div>
+                <div>
+                  <label for="email">E-Mail</label>
+                  <input id="email" name="email" type="email" placeholder="max@firma.de" />
+                </div>
+                <div>
+                  <label for="company">Firma</label>
+                  <input id="company" name="company" type="text" placeholder="Muster GmbH" />
+                </div>
+                <div>
+                  <label for="source">Woher kommen die Anfragen?</label>
+                  <select id="source" name="source">
+                    <option value="">Bitte auswählen</option>
+                    <option>Website-Formular</option>
+                    <option>Bestimmte E-Mail-Adresse</option>
+                    <option>Ticketsystem</option>
+                    <option>Mehrere Quellen</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="request-type">Art der Anfrage</label>
+                  <select id="request-type" name="request-type">
+                    <option value="">Bitte auswählen</option>
+                    <option>Angebotsanfragen</option>
+                    <option>Beratungsanfragen</option>
+                    <option>Supportanfragen</option>
+                    <option>Gemischt</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="budget">Projektbudget</label>
+                  <select id="budget" name="budget">
+                    <option value="">Bitte auswählen</option>
+                    <option>unter 1.000 €</option>
+                    <option>1.000–5.000 €</option>
+                    <option>5.000–10.000 €</option>
+                    <option>über 10.000 €</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="urgency">Dringlichkeit</label>
+                  <select id="urgency" name="urgency">
+                    <option value="">Bitte auswählen</option>
+                    <option>Sofort</option>
+                    <option>Diese Woche</option>
+                    <option>Diesen Monat</option>
+                    <option>Noch offen</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="answers">Automatische Antworten heute?</label>
+                  <select id="answers" name="answers">
+                    <option value="">Bitte auswählen</option>
+                    <option>Ja</option>
+                    <option>Nein</option>
+                    <option>Teilweise</option>
+                  </select>
+                </div>
+                <div class="full">
+                  <label for="message">Nachricht</label>
+                  <textarea id="message" name="message" placeholder="Beschreibe kurz deinen aktuellen Prozess und was automatisiert werden soll."></textarea>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Kostenlose Demo anfragen</button>
+              <p id="form-status" class="small-note"></p>
+              <p class="small-note">Mit dem Absenden erklären Sie sich mit der Verarbeitung Ihrer Daten gemäß unserer <a href="datenschutz.html">Datenschutzerklärung</a> einverstanden.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 Automira. Alle Rechte vorbehalten.</div>
+      <div><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="#kontakt">Kontakt</a></div>
     </div>
-
-    <div class="section">
-      <h2>So funktioniert es</h2>
-      <p>
-        1. Anfrage kommt rein<br>
-        2. Automira analysiert<br>
-        3. Automira antwortet
-      </p>
-    </div>
-
-    <div class="section">
-      <h2>Kontakt</h2>
-      <p>Schreiben Sie uns Ihr Anliegen. Wir melden uns schnellstmöglich zurück.</p>
-
-      <form id="contact-form">
-        <input type="text" id="name" name="name" placeholder="Ihr Name" required>
-        <br><br>
-
-        <input type="email" id="email" name="email" placeholder="Ihre E-Mail-Adresse" required>
-        <br><br>
-
-        <textarea id="message" name="message" placeholder="Ihre Nachricht" rows="6" required></textarea>
-        <br><br>
-
-        <button type="submit" class="button">Anfrage senden</button>
-      </form>
-
-      <p id="form-status" style="margin-top: 15px;"></p>
-
-      <p style="font-size: 14px; color: #555; margin-top: 20px;">
-        Mit dem Absenden erklären Sie sich mit der Verarbeitung Ihrer Daten gemäß unserer
-        <a href="datenschutz.html">Datenschutzerklärung</a> einverstanden.
-      </p>
-    </div>
-
-  </div>
-
-  <footer>
-    <a href="impressum.html">Impressum</a> |
-    <a href="datenschutz.html">Datenschutz</a>
   </footer>
-
   <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("contact-form");
-  const status = document.getElementById("form-status");
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("contact-form");
+      const status = document.getElementById("form-status");
 
-  if (!form) {
-    console.log("Formular nicht gefunden.");
-    return;
-  }
-
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
-
-    const formData = {
-      customer_id: "kunde_123",
-      source: "website",
-      name: document.getElementById("name").value,
-      email: document.getElementById("email").value,
-      message: document.getElementById("message").value
-    };
-
-    console.log("Sende Daten an Make:", formData);
-
-    try {
-      const response = await fetch("https://hook.eu1.make.com/qp2l0i9tp7jp3dgbw0gahtxtx8bkde5j", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData)
-      });
-
-      console.log("Antwortstatus:", response.status);
-
-      if (response.ok) {
-        status.textContent = "Vielen Dank. Ihre Anfrage wurde erfolgreich gesendet.";
-        status.style.color = "green";
-        form.reset();
-      } else {
-        status.textContent = "Es gab ein Problem beim Senden. Bitte versuchen Sie es erneut.";
-        status.style.color = "red";
+      if (!form) {
+        console.log("Formular nicht gefunden.");
+        return;
       }
-    } catch (error) {
-      console.error("Fehler beim Senden:", error);
-      status.textContent = "Es gab ein Problem beim Senden. Bitte versuchen Sie es erneut.";
-      status.style.color = "red";
-    }
-  });
-});
-</script>
 
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const formData = {
+          customer_id: "kunde_123",
+          source: document.getElementById("source")?.value || "website",
+          name: document.getElementById("name")?.value || "",
+          email: document.getElementById("email")?.value || "",
+          company: document.getElementById("company")?.value || "",
+          request_type: document.getElementById("request-type")?.value || "",
+          budget: document.getElementById("budget")?.value || "",
+          urgency: document.getElementById("urgency")?.value || "",
+          automated_answers: document.getElementById("answers")?.value || "",
+          message: document.getElementById("message")?.value || ""
+        };
+
+        try {
+          const response = await fetch("https://hook.eu1.make.com/qp2l0i9tp7jp3dgbw0gahtxtx8bkde5j", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+          });
+
+          if (response.ok) {
+            status.textContent = "Vielen Dank. Ihre Anfrage wurde erfolgreich gesendet.";
+            status.style.color = "green";
+            form.reset();
+          } else {
+            status.textContent = "Es gab ein Problem beim Senden. Bitte versuchen Sie es erneut.";
+            status.style.color = "red";
+          }
+        } catch (error) {
+          console.error("Fehler beim Senden:", error);
+          status.textContent = "Es gab ein Problem beim Senden. Bitte versuchen Sie es erneut.";
+          status.style.color = "red";
+        }
+      });
+    });
+  </script>
 </body>
 </html>
