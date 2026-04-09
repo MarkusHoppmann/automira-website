@@ -46,11 +46,6 @@
       text-decoration: none;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
     .container {
       width: min(calc(100% - 40px), var(--max-width));
       margin: 0 auto;
@@ -785,7 +780,7 @@
     <section class="section section-alt" id="kontakt">
       <div class="container">
         <span class="eyebrow">Demo anfragen</span>
-        <h2>Erzählen Sie kurz, wie Ihre Anfragen heute eingehen</h2>
+        <h2>Beschreiben Sie kurz, wie Ihre Anfragen heute eingehen</h2>
         <p class="lead">
           Diese Informationen helfen uns, Ihre Anforderungen schnell einzuordnen und eine passende Automatisierung für Ihr Unternehmen zu konzipieren – unabhängig davon, ob Ihre Anfragen über ein Formular, eine E-Mail-Adresse oder ein Ticketsystem eingehen.
         </p>
@@ -806,6 +801,8 @@
 
           <div class="form-panel">
             <form id="contact-form">
+              <input type="hidden" id="customer-id" name="customer-id" value="automira_website" />
+
               <div class="form-grid">
                 <div>
                   <label for="name">Name</label>
@@ -925,7 +922,11 @@
         e.preventDefault();
 
         const formData = {
-          customer_id: "automira_website"",
+          customer_id: document.getElementById("customer-id")?.value || "automira_website",
+          page_url: window.location.href,
+          hostname: window.location.hostname,
+          submitted_at: new Date().toISOString(),
+          entry_point: "website_form",
           source: document.getElementById("source")?.value || "website",
           name: document.getElementById("name")?.value || "",
           email: document.getElementById("email")?.value || "",
