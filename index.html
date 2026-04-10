@@ -19,7 +19,9 @@
       --surface-2: #eff6ff;
       --border: #e5e7eb;
       --success: #16a34a;
-      --warning: #92400e;
+      --warning-bg: #fff7ed;
+      --warning-border: #fed7aa;
+      --warning-text: #9a3412;
       --shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
       --radius: 18px;
       --max-width: 1180px;
@@ -207,7 +209,7 @@
       gap: 14px;
     }
 
-    .metric, .mini-card, .card, .price-card, .source-card, .demo-card, .price-structure-card {
+    .metric, .mini-card, .card, .price-card, .source-card, .demo-card {
       background: white;
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -291,16 +293,14 @@
     .card,
     .source-card,
     .price-card,
-    .demo-card,
-    .price-structure-card {
+    .demo-card {
       padding: 28px;
     }
 
     .card p,
     .source-card p,
     .price-card p,
-    .demo-card p,
-    .price-structure-card p {
+    .demo-card p {
       color: var(--muted);
     }
 
@@ -385,7 +385,6 @@
     }
 
     .price-card ul,
-    .price-structure-card ul,
     .demo-card ul {
       list-style: none;
       margin: 22px 0 28px;
@@ -394,7 +393,6 @@
     }
 
     .price-card li,
-    .price-structure-card li,
     .demo-card li {
       padding-left: 28px;
       position: relative;
@@ -402,7 +400,6 @@
     }
 
     .price-card li::before,
-    .price-structure-card li::before,
     .demo-card li::before {
       content: "✓";
       position: absolute;
@@ -412,20 +409,13 @@
       font-weight: 800;
     }
 
-    .price-structure-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 40px;
-    }
-
     .price-note {
       margin-top: 24px;
-      background: #fff7ed;
-      border: 1px solid #fed7aa;
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
       border-radius: 16px;
       padding: 18px 20px;
-      color: var(--warning);
+      color: var(--warning-text);
       font-size: 0.96rem;
     }
 
@@ -447,6 +437,7 @@
       justify-content: center;
       text-align: center;
       padding: 30px;
+      box-shadow: var(--shadow);
     }
 
     .demo-placeholder-inner {
@@ -566,7 +557,6 @@
       .steps,
       .pricing,
       .dash-top,
-      .price-structure-grid,
       .demo-layout {
         grid-template-columns: 1fr;
       }
@@ -611,14 +601,14 @@
   <header>
     <div class="container nav">
       <a href="#top" class="logo">Auto<span>mira</span></a>
-     <ul class="nav-links">
-  <li><a href="#loesung">Lösung</a></li>
-  <li><a href="#bausteine">Bausteine</a></li>
-  <li><a href="#preise">Preise</a></li>
-  <li><a href="#ablauf">Ablauf</a></li>
-  <li><a href="#demo">Produktdemo</a></li>
-  <li><a href="#kontakt">Kontakt</a></li>
-</ul>
+      <ul class="nav-links">
+        <li><a href="#loesung">Lösung</a></li>
+        <li><a href="#bausteine">Bausteine</a></li>
+        <li><a href="#preise">Leistungsstufen</a></li>
+        <li><a href="#ablauf">Ablauf</a></li>
+        <li><a href="#demo">Produktdemo</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
     </div>
   </header>
 
@@ -633,7 +623,7 @@
           </p>
           <div class="btn-row">
             <a href="#demo" class="btn btn-primary">Produktdemo ansehen</a>
-            <a href="#kontakt" class="btn btn-secondary">Beratung anfragen</a>
+            <a href="#kontakt" class="btn btn-secondary">Individuelles Angebot anfordern</a>
           </div>
         </div>
 
@@ -793,172 +783,159 @@
       </div>
     </section>
 
-  <section class="section" id="preise">
-  <div class="container">
-    <span class="eyebrow">Leistungsstufen &amp; Investition</span>
-    <h2>Transparent kalkulierbar. Individuell angeboten.</h2>
-    <p class="lead">
-      Automira wird nicht per Online-Klick gekauft, sondern nach einem kurzen Erstgespräch passend zu Ihren Eingangskanälen, Ihrem Anfragevolumen und Ihrem gewünschten Automatisierungsgrad angeboten. So erhalten Sie einen klaren Leistungsrahmen mit nachvollziehbarer Investition.
-    </p>
-
-    <div class="pricing">
-      <article class="price-card">
-        <h3>Standard</h3>
-        <p>Für Unternehmen, die einen strukturierten Einstieg mit einer zentralen Anfragequelle umsetzen möchten.</p>
-        <div class="price">690 €<span class="muted" style="font-size:1rem; font-weight:600;"> Einrichtung</span></div>
-        <p style="margin-top: 8px;"><strong>149 € / Monat</strong> inkl. bis zu 100 Vorgänge / Monat</p>
-        <ul>
-          <li>1 Eingangskanal inklusive</li>
-          <li>Automatische Erstreaktion auf Anfragen</li>
-          <li>Strukturierte Erfassung und Weiterleitung</li>
-          <li>Einfache Priorisierung</li>
-          <li>Geeignet für klar definierte Standardprozesse</li>
-        </ul>
-        <a href="#kontakt" class="btn btn-secondary">Angebot für Standard anfragen</a>
-      </article>
-
-      <article class="price-card featured">
-        <span class="featured-tag">Empfohlen</span>
-        <h3>Professional</h3>
-        <p>Für Unternehmen, die mehrere Kanäle bündeln und Anfragen gezielt priorisieren möchten.</p>
-        <div class="price">1.490 €<span class="muted" style="font-size:1rem; font-weight:600;"> Einrichtung</span></div>
-        <p style="margin-top: 8px;"><strong>349 € / Monat</strong> inkl. bis zu 500 Vorgänge / Monat</p>
-        <ul>
-          <li>Bis zu 2 Eingangskanäle inklusive</li>
-          <li>Lead-Scoring und Priorisierung</li>
-          <li>Interne Benachrichtigungen</li>
-          <li>Passende automatische Rückmeldungen</li>
-          <li>Geeignet für aktiven Vertrieb und strukturierte Bearbeitung</li>
-        </ul>
-        <a href="#kontakt" class="btn btn-primary">Angebot für Professional anfragen</a>
-      </article>
-
-      <article class="price-card">
-        <h3>Enterprise</h3>
-        <p>Für Unternehmen mit individuellen Regeln, mehreren Quellen und komplexeren Abläufen.</p>
-        <div class="price">individuell</div>
-        <p style="margin-top: 8px;"><strong>individuelle Kalkulation</strong> nach Quellen, Volumen und Prozesslogik</p>
-        <ul>
-          <li>Mehrere individualisierte Eingangskanäle</li>
-          <li>Individuelle Workflow- und Routing-Logik</li>
-          <li>Integration in CRM, Tabellen oder Drittsysteme</li>
-          <li>Angebotsvorbereitung oder weitergehende Automatisierung</li>
-          <li>Geeignet für komplexe oder wachsende Prozesse</li>
-        </ul>
-        <a href="#kontakt" class="btn btn-secondary">Enterprise-Angebot anfragen</a>
-      </article>
-    </div>
-
-    <div class="price-note">
-      Die Mindestlaufzeit beträgt 6 Monate, da Automira individuell eingerichtet, auf Ihre Prozesse abgestimmt und im laufenden Betrieb optimiert wird. Darüber hinausgehende Vorgänge, zusätzliche Quellen oder erweiterte KI-Nutzung können im Angebot gesondert berücksichtigt werden.
-    </div>
-  </div>
-</section>
-
-    <section class="section section-alt">
+    <section class="section" id="preise">
       <div class="container">
-        <span class="eyebrow">Beispielhafte Leistungsstufen</span>
-        <h2>Von der ersten Automatisierung bis zur individuellen Prozesslogik</h2>
+        <span class="eyebrow">Leistungsstufen &amp; Investition</span>
+        <h2>Transparent kalkulierbar. Individuell angeboten.</h2>
         <p class="lead">
-          Je nach Ausgangssituation kann Automira als kompakter Einstieg oder als umfassende Automatisierungslösung umgesetzt werden.
+          Automira wird nicht per Online-Klick gekauft, sondern nach einem kurzen Erstgespräch passend zu Ihren Eingangskanälen, Ihrem Anfragevolumen und Ihrem gewünschten Automatisierungsgrad angeboten. So erhalten Sie einen klaren Leistungsrahmen mit nachvollziehbarer Investition.
         </p>
 
         <div class="pricing">
           <article class="price-card">
-            <h3>Basis</h3>
-            <p>Für Unternehmen, die einen ersten Eingangskanal automatisiert verarbeiten möchten.</p>
+            <h3>Standard</h3>
+            <p>Für Unternehmen, die einen strukturierten Einstieg mit einer zentralen Anfragequelle umsetzen möchten.</p>
+            <div class="price">690 €<span class="muted" style="font-size:1rem; font-weight:600;"> Einrichtung</span></div>
+            <p style="margin-top: 8px;"><strong>149 € / Monat</strong> inkl. bis zu 100 Vorgänge / Monat</p>
             <ul>
-              <li>Ein Formular oder eine E-Mail-Adresse als Startpunkt</li>
-              <li>Automatische Erstreaktion</li>
-              <li>Strukturierte Erfassung der Anfrage</li>
-              <li>Einfacher Routing-Prozess</li>
+              <li>1 Eingangskanal inklusive</li>
+              <li>Automatische Erstreaktion auf Anfragen</li>
+              <li>Strukturierte Erfassung und Weiterleitung</li>
+              <li>Einfache Priorisierung</li>
+              <li>Geeignet für klar definierte Standardprozesse</li>
             </ul>
+            <a href="#kontakt" class="btn btn-secondary">Angebot für Standard anfragen</a>
           </article>
 
           <article class="price-card featured">
-            <span class="featured-tag">Häufig nachgefragt</span>
-            <h3>Erweitert</h3>
-            <p>Für Unternehmen, die Anfragen priorisieren und vertrieblich besser verarbeiten möchten.</p>
+            <span class="featured-tag">Empfohlen</span>
+            <h3>Professional</h3>
+            <p>Für Unternehmen, die mehrere Kanäle bündeln und Anfragen gezielt priorisieren möchten.</p>
+            <div class="price">1.490 €<span class="muted" style="font-size:1rem; font-weight:600;"> Einrichtung</span></div>
+            <p style="margin-top: 8px;"><strong>349 € / Monat</strong> inkl. bis zu 500 Vorgänge / Monat</p>
             <ul>
-              <li>Mehrere Eingangskanäle in einem Prozess</li>
+              <li>Bis zu 2 Eingangskanäle inklusive</li>
               <li>Lead-Scoring und Priorisierung</li>
               <li>Interne Benachrichtigungen</li>
               <li>Passende automatische Rückmeldungen</li>
+              <li>Geeignet für aktiven Vertrieb und strukturierte Bearbeitung</li>
             </ul>
+            <a href="#kontakt" class="btn btn-primary">Angebot für Professional anfragen</a>
           </article>
 
           <article class="price-card">
-            <h3>Individuell</h3>
-            <p>Für Unternehmen mit spezifischen Regeln, CRM-Anbindung oder Angebotsautomatisierung.</p>
+            <h3>Enterprise</h3>
+            <p>Für Unternehmen mit individuellen Regeln, mehreren Quellen und komplexeren Abläufen.</p>
+            <div class="price">individuell</div>
+            <p style="margin-top: 8px;"><strong>individuelle Kalkulation</strong> nach Quellen, Volumen und Prozesslogik</p>
             <ul>
-              <li>Individuelle Prozesslogik</li>
-              <li>Systemübergreifende Integrationen</li>
-              <li>Angebotsvorbereitung oder Angebotsversand</li>
-              <li>Anpassung an interne Abläufe und Rollen</li>
+              <li>Mehrere individualisierte Eingangskanäle</li>
+              <li>Individuelle Workflow- und Routing-Logik</li>
+              <li>Integration in CRM, Tabellen oder Drittsysteme</li>
+              <li>Angebotsvorbereitung oder weitergehende Automatisierung</li>
+              <li>Geeignet für komplexe oder wachsende Prozesse</li>
             </ul>
+            <a href="#kontakt" class="btn btn-secondary">Enterprise-Angebot anfragen</a>
+          </article>
+        </div>
+
+        <div class="price-note">
+          Die Mindestlaufzeit beträgt 6 Monate, da Automira individuell eingerichtet, auf Ihre Prozesse abgestimmt und im laufenden Betrieb optimiert wird. Darüber hinausgehende Vorgänge, zusätzliche Quellen oder erweiterte KI-Nutzung können im Angebot gesondert berücksichtigt werden.
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="ablauf">
+      <div class="container">
+        <span class="eyebrow">So starten Sie</span>
+        <h2>Der Weg zu Ihrer Lösung in vier klaren Schritten</h2>
+        <p class="lead">
+          Automira wird nicht als anonyme Standardsoftware verkauft, sondern auf Ihre Prozesse abgestimmt eingeführt. Deshalb beginnt jede Zusammenarbeit mit einem kurzen Erstgespräch und einem darauf aufbauenden Angebot.
+        </p>
+
+        <div class="steps">
+          <article class="step">
+            <div class="step-number">1</div>
+            <h3>Anfrage senden</h3>
+            <p>Sie senden uns Ihre Anfrage über das Formular und beschreiben kurz Ihre aktuellen Eingangskanäle und Anforderungen.</p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">2</div>
+            <h3>Erstgespräch führen</h3>
+            <p>In einem kurzen Gespräch klären wir Volumen, Quellen, Automatisierungsgrad und Ihre Ziele im Vertrieb oder Service.</p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">3</div>
+            <h3>Angebot erhalten</h3>
+            <p>Sie erhalten ein individuelles Angebot mit Leistungsumfang, Implementierung, laufender Betreuung und klarer Mindestlaufzeit.</p>
+          </article>
+        </div>
+
+        <div class="steps" style="margin-top: 24px;">
+          <article class="step">
+            <div class="step-number">4</div>
+            <h3>Einführung starten</h3>
+            <p>Nach Beauftragung richten wir Automira für Ihr Unternehmen ein und passen die Lösung an Ihre Prozesse an.</p>
           </article>
         </div>
       </div>
     </section>
 
-   <section class="section section-alt" id="ablauf">
-  <div class="container">
-    <span class="eyebrow">So starten Sie</span>
-    <h2>Der Weg zu Ihrer Lösung in vier klaren Schritten</h2>
-    <p class="lead">
-      Automira wird nicht als anonyme Standardsoftware verkauft, sondern auf Ihre Prozesse abgestimmt eingeführt. Deshalb beginnt jede Zusammenarbeit mit einem kurzen Erstgespräch und einem darauf aufbauenden Angebot.
-    </p>
+    <section class="section" id="demo">
+      <div class="container">
+        <span class="eyebrow">Produktdemo</span>
+        <h2>Sehen Sie die Funktionsweise von Automira in einer kurzen Demo</h2>
+        <p class="lead">
+          Statt eines Testzugangs erhalten Interessenten einen kompakten Einblick in den Ablauf, die Logik und den Nutzen der Lösung. So entsteht von Anfang an ein realistisches Bild der Einsatzmöglichkeiten.
+        </p>
 
-    <div class="steps">
-      <article class="step">
-        <div class="step-number">1</div>
-        <h3>Anfrage senden</h3>
-        <p>Sie senden uns Ihre Anfrage über das Formular und beschreiben kurz Ihre aktuellen Eingangskanäle und Anforderungen.</p>
-      </article>
+        <div class="demo-layout">
+          <div class="demo-placeholder">
+            <div class="demo-placeholder-inner">
+              <div class="demo-play">▶</div>
+              <h3>Demo-Video folgt in Kürze</h3>
+              <p class="muted">
+                Hier wird in Kürze eine kurze Produktdemo eingebunden, die den Ablauf von Anfrageeingang, Analyse, Priorisierung und Reaktion zeigt.
+              </p>
+            </div>
+          </div>
 
-      <article class="step">
-        <div class="step-number">2</div>
-        <h3>Erstgespräch führen</h3>
-        <p>In einem kurzen Gespräch klären wir Volumen, Quellen, Automatisierungsgrad und Ihre Ziele im Vertrieb oder Service.</p>
-      </article>
-
-      <article class="step">
-        <div class="step-number">3</div>
-        <h3>Angebot erhalten</h3>
-        <p>Sie erhalten ein individuelles Angebot mit Leistungsumfang, Implementierung, laufender Betreuung und klarer Mindestlaufzeit.</p>
-      </article>
-    </div>
-
-    <div class="steps" style="margin-top: 24px;">
-      <article class="step">
-        <div class="step-number">4</div>
-        <h3>Einführung starten</h3>
-        <p>Nach Beauftragung richten wir Automira für Ihr Unternehmen ein und passen die Lösung an Ihre Prozesse an.</p>
-      </article>
-    </div>
-  </div>
-</section>
+          <article class="demo-card">
+            <h3>Was die Produktdemo zeigt</h3>
+            <ul>
+              <li>Wie Anfragen aus Formular, E-Mail oder Ticketsystem erfasst werden</li>
+              <li>Wie Automira Inhalte analysiert und priorisiert</li>
+              <li>Wie automatische Antworten und interne Hinweise ausgelöst werden</li>
+              <li>Wie sich der Prozess an unterschiedliche Unternehmen anpassen lässt</li>
+            </ul>
+            <a href="#kontakt" class="btn btn-primary">Produktdemo anfragen</a>
+          </article>
+        </div>
+      </div>
+    </section>
 
     <section class="section section-alt" id="kontakt">
       <div class="container">
         <span class="eyebrow">Individuelles Angebot anfordern</span>
-<h2>Beschreiben Sie kurz Ihre Ausgangssituation</h2>
-<p class="lead">
-  Ihre Anfrage dient der Vorbereitung eines kurzen Erstgesprächs und eines individuellen Angebots. So können wir Aufwand, Leistungsstufe und passende Einführung von Automira realistisch für Ihr Unternehmen einordnen.
-</p>
+        <h2>Beschreiben Sie kurz Ihre Ausgangssituation</h2>
+        <p class="lead">
+          Ihre Anfrage dient der Vorbereitung eines kurzen Erstgesprächs und eines individuellen Angebots. So können wir Aufwand, Leistungsstufe und passende Einführung von Automira realistisch für Ihr Unternehmen einordnen.
+        </p>
 
         <div class="form-wrap">
           <aside class="info-panel">
-          <h3>Was wir vorab verstehen sollten</h3>
-<ul class="contact-points">
-  <li>Welche Anfragequellen aktuell genutzt werden</li>
-  <li>Wie hoch das monatliche Anfragevolumen ungefähr ist</li>
-  <li>Ob bereits automatische Antworten oder interne Prozesse existieren</li>
-  <li>Wie individuell Regeln, Angebote oder Weiterleitungen sein sollen</li>
-</ul>
-<p class="small-note" style="margin-top: 20px;">
-  Auf Basis dieser Angaben bereiten wir ein Erstgespräch und ein individuelles Angebot vor. Ein unmittelbarer Online-Kauf erfolgt derzeit nicht über die Website.
-</p>
+            <h3>Was wir vorab verstehen sollten</h3>
+            <ul class="contact-points">
+              <li>Welche Anfragequellen aktuell genutzt werden</li>
+              <li>Wie hoch das monatliche Anfragevolumen ungefähr ist</li>
+              <li>Ob bereits automatische Antworten oder interne Prozesse existieren</li>
+              <li>Wie individuell Regeln, Angebote oder Weiterleitungen sein sollen</li>
+            </ul>
+            <p class="small-note" style="margin-top: 20px;">
+              Auf Basis dieser Angaben bereiten wir ein Erstgespräch und ein individuelles Angebot vor. Ein unmittelbarer Online-Kauf erfolgt derzeit nicht über die Website.
+            </p>
           </aside>
 
           <div class="form-panel">
@@ -1015,6 +992,17 @@
                 </div>
 
                 <div>
+                  <label for="volume">Vorgänge pro Monat</label>
+                  <select id="volume" name="volume">
+                    <option value="">Bitte auswählen</option>
+                    <option value="bis 100">bis 100</option>
+                    <option value="101-500">101–500</option>
+                    <option value="501-1000">501–1000</option>
+                    <option value="über 1000">über 1000</option>
+                  </select>
+                </div>
+
+                <div>
                   <label for="urgency">Dringlichkeit</label>
                   <select id="urgency" name="urgency">
                     <option value="">Bitte auswählen</option>
@@ -1046,7 +1034,7 @@
                 </div>
               </div>
 
-             <button type="submit" class="btn btn-primary">Individuelles Angebot anfordern</button>
+              <button type="submit" class="btn btn-primary">Individuelles Angebot anfordern</button>
               <p id="form-status" class="small-note"></p>
               <p class="small-note">
                 Mit dem Absenden erklären Sie sich mit der Verarbeitung Ihrer Daten gemäß unserer
@@ -1095,8 +1083,8 @@
           company: document.getElementById("company")?.value || "",
           request_type: document.getElementById("request-type")?.value || "",
           budget: document.getElementById("budget")?.value || "",
-volume: document.getElementById("volume")?.value || "",
-urgency: document.getElementById("urgency")?.value || "",
+          volume: document.getElementById("volume")?.value || "",
+          urgency: document.getElementById("urgency")?.value || "",
           automated_answers: document.getElementById("answers")?.value || "",
           message: document.getElementById("message")?.value || ""
         };
