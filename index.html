@@ -512,7 +512,10 @@
       color: var(--text);
       background: white;
     }
-
+select[multiple] {
+  min-height: 180px;
+  padding: 12px;
+}
     textarea {
       min-height: 150px;
       resize: vertical;
@@ -958,16 +961,19 @@
                   <input id="company" name="company" type="text" placeholder="Muster GmbH" />
                 </div>
 
-                <div>
-                  <label for="source">Woher kommen die Anfragen?</label>
-                  <select id="source" name="source" required>
-                    <option value="">Bitte auswählen</option>
-                    <option value="Website-Formular">Website-Formular</option>
-                    <option value="Bestimmte E-Mail-Adresse">Bestimmte E-Mail-Adresse</option>
-                    <option value="Ticketsystem">Ticketsystem</option>
-                    <option value="Mehrere Quellen">Mehrere Quellen</option>
-                  </select>
-                </div>
+               <div>
+  <label for="source">Woher stammen Ihre Anfragen?</label>
+  <select id="source" name="source" multiple required>
+    <option value="Website-Formular">Website-Formular</option>
+    <option value="Bestimmte E-Mail-Adresse">Bestimmte E-Mail-Adresse</option>
+    <option value="Ticketsystem">Ticketsystem</option>
+    <option value="Telefon">Telefon</option>
+    <option value="Empfehlungen">Empfehlungen</option>
+    <option value="Werbekampagnen">Werbekampagnen</option>
+    <option value="Sonstige Quellen">Sonstige Quellen</option>
+  </select>
+  <p class="small-note">Mehrfachauswahl möglich: Bitte halten Sie Strg oder Cmd gedrückt.</p>
+</div>
 
                 <div>
                   <label for="request-type">Art der Anfrage</label>
