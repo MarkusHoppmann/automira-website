@@ -19,6 +19,7 @@
       --surface-2: #eff6ff;
       --border: #e5e7eb;
       --success: #16a34a;
+      --warning: #92400e;
       --shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
       --radius: 18px;
       --max-width: 1180px;
@@ -89,7 +90,7 @@
     p.lead {
       font-size: 1.15rem;
       color: var(--muted);
-      max-width: 760px;
+      max-width: 820px;
     }
 
     p + p {
@@ -206,7 +207,7 @@
       gap: 14px;
     }
 
-    .metric, .mini-card, .card, .price-card, .source-card {
+    .metric, .mini-card, .card, .price-card, .source-card, .demo-card, .price-structure-card {
       background: white;
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -289,13 +290,17 @@
 
     .card,
     .source-card,
-    .price-card {
+    .price-card,
+    .demo-card,
+    .price-structure-card {
       padding: 28px;
     }
 
     .card p,
     .source-card p,
-    .price-card p {
+    .price-card p,
+    .demo-card p,
+    .price-structure-card p {
       color: var(--muted);
     }
 
@@ -379,26 +384,87 @@
       margin: 16px 0 4px;
     }
 
-    .price-card ul {
+    .price-card ul,
+    .price-structure-card ul,
+    .demo-card ul {
       list-style: none;
       margin: 22px 0 28px;
       display: grid;
       gap: 12px;
     }
 
-    .price-card li {
+    .price-card li,
+    .price-structure-card li,
+    .demo-card li {
       padding-left: 28px;
       position: relative;
       color: var(--muted);
     }
 
-    .price-card li::before {
+    .price-card li::before,
+    .price-structure-card li::before,
+    .demo-card li::before {
       content: "✓";
       position: absolute;
       left: 0;
       top: 0;
       color: var(--success);
       font-weight: 800;
+    }
+
+    .price-structure-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .price-note {
+      margin-top: 24px;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 16px;
+      padding: 18px 20px;
+      color: var(--warning);
+      font-size: 0.96rem;
+    }
+
+    .demo-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 26px;
+      align-items: stretch;
+      margin-top: 40px;
+    }
+
+    .demo-placeholder {
+      min-height: 320px;
+      border: 1px dashed #93c5fd;
+      border-radius: 22px;
+      background: linear-gradient(180deg, #eff6ff 0%, #ffffff 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .demo-placeholder-inner {
+      max-width: 420px;
+    }
+
+    .demo-play {
+      width: 74px;
+      height: 74px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      box-shadow: var(--shadow);
     }
 
     .form-wrap {
@@ -499,7 +565,9 @@
       .grid-4,
       .steps,
       .pricing,
-      .dash-top {
+      .dash-top,
+      .price-structure-grid,
+      .demo-layout {
         grid-template-columns: 1fr;
       }
 
@@ -547,7 +615,8 @@
         <li><a href="#loesung">Lösung</a></li>
         <li><a href="#bausteine">Bausteine</a></li>
         <li><a href="#preise">Preise</a></li>
-        <li><a href="#kontakt">Demo</a></li>
+        <li><a href="#demo">Produktdemo</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
       </ul>
     </div>
   </header>
@@ -557,13 +626,13 @@
       <div class="container hero-grid">
         <div>
           <span class="eyebrow">KI-gestützte Leadbearbeitung für Vertrieb &amp; Service</span>
-          <h1>Mehr Anfragen. Weniger Aufwand. Mehr Abschlüsse.</h1>
+          <h1>Mehr Anfragen. Weniger manueller Aufwand. Schnellere Reaktion.</h1>
           <p class="lead">
-            Automira automatisiert die Bearbeitung eingehender Kundenanfragen – von Website-Formularen über E-Mails bis zum Ticketsystem. So werden Leads schneller qualifiziert, priorisiert und passend beantwortet.
+            Automira automatisiert die Bearbeitung eingehender Kundenanfragen – von Website-Formularen über E-Mails bis zum Ticketsystem. So werden Anfragen schneller qualifiziert, priorisiert und passend weiterverarbeitet.
           </p>
           <div class="btn-row">
-            <a href="#kontakt" class="btn btn-primary">Kostenlose Demo anfragen</a>
-            <a href="#preise" class="btn btn-secondary">Pakete ansehen</a>
+            <a href="#demo" class="btn btn-primary">Produktdemo ansehen</a>
+            <a href="#kontakt" class="btn btn-secondary">Beratung anfragen</a>
           </div>
         </div>
 
@@ -612,7 +681,7 @@
     <section class="section" id="loesung">
       <div class="container">
         <span class="eyebrow">Das Problem</span>
-        <h2>Warum gehen Unternehmen bei Anfragen Umsatzpotenzial verloren?</h2>
+        <h2>Warum gehen Unternehmen bei Anfragen wertvolle Zeit und Umsatzpotenziale verloren?</h2>
         <p class="lead">
           Viele Anfragen werden zu spät bearbeitet, falsch priorisiert oder nicht passend beantwortet. Genau hier setzt Automira an: Anfragen werden zentral erfasst, automatisch bewertet und gezielt weiterverarbeitet.
         </p>
@@ -725,53 +794,130 @@
 
     <section class="section" id="preise">
       <div class="container">
-        <span class="eyebrow">Pakete &amp; Preise</span>
-        <h2>Die passende Lösung für Ihre Anfragen</h2>
+        <span class="eyebrow">Preisstruktur</span>
+        <h2>Transparent kalkuliert. Passend zu Aufwand und Nutzung.</h2>
         <p class="lead">
-          Egal ob einzelne Anfragen oder ein hohes Anfragevolumen – Automira passt sich Ihren Prozessen an. Wählen Sie das Paket, das zu Ihrem Bedarf passt und starten Sie mit automatisierter Leadbearbeitung in wenigen Tagen.
+          Automira besteht aus einer einmaligen technischen Einrichtung, einer laufenden Betreuung und – je nach Anfragevolumen – nutzungsabhängigen Kosten. So bleibt die Lösung planbar und wächst mit Ihrem Bedarf.
+        </p>
+
+        <div class="price-structure-grid">
+          <article class="price-structure-card">
+            <h3>1. Implementierung</h3>
+            <p>Einmalige Einrichtung Ihrer individuellen Automatisierung.</p>
+            <div class="price">ab 490 €</div>
+            <ul>
+              <li>Analyse Ihrer Anfrageprozesse</li>
+              <li>Einrichtung von Formular, E-Mail oder Ticketsystem</li>
+              <li>Workflow-Aufbau in Make</li>
+              <li>Test, Anpassung und Inbetriebnahme</li>
+            </ul>
+          </article>
+
+          <article class="price-structure-card">
+            <h3>2. Laufende Nutzung</h3>
+            <p>Monatliche Grundgebühr für Betrieb, Pflege und kleinere Anpassungen.</p>
+            <div class="price">ab 99 €<span class="muted" style="font-size:1rem; font-weight:600;"> / Monat</span></div>
+            <ul>
+              <li>Betrieb der Automatisierung</li>
+              <li>Überwachung der Kernprozesse</li>
+              <li>Kleinere Optimierungen im laufenden Betrieb</li>
+              <li>Ansprechpartner für Rückfragen</li>
+            </ul>
+          </article>
+
+          <article class="price-structure-card">
+            <h3>3. Variable Nutzung</h3>
+            <p>Nutzungsabhängige Kosten bei höherem Volumen oder erweitertem KI-Einsatz.</p>
+            <div class="price">individuell</div>
+            <ul>
+              <li>Abhängig von Anfragevolumen und Komplexität</li>
+              <li>Berücksichtigung von KI- und Automatisierungskosten</li>
+              <li>Transparent nach Nutzung oder Volumen staffelbar</li>
+              <li>Geeignet für wachsende Prozesse</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="price-note">
+          Die genaue Kalkulation richtet sich nach Ihren Eingangskanälen, dem gewünschten Automatisierungsgrad und dem monatlichen Anfragevolumen. Auf Wunsch erhalten Sie ein individuelles Angebot nach einem kurzen Erstgespräch.
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <span class="eyebrow">Beispielhafte Leistungsstufen</span>
+        <h2>Von der ersten Automatisierung bis zur individuellen Prozesslogik</h2>
+        <p class="lead">
+          Je nach Ausgangssituation kann Automira als kompakter Einstieg oder als umfassende Automatisierungslösung umgesetzt werden.
         </p>
 
         <div class="pricing">
           <article class="price-card">
-            <h3>Starter</h3>
-            <p>Ideal für den Einstieg in die automatisierte Bearbeitung von Kundenanfragen.</p>
-            <div class="price">ab 99 €<span class="muted" style="font-size:1rem; font-weight:600;"> / Monat</span></div>
+            <h3>Basis</h3>
+            <p>Für Unternehmen, die einen ersten Eingangskanal automatisiert verarbeiten möchten.</p>
             <ul>
-              <li>1 Eingangskanal für Ihre Anfragen</li>
-              <li>Schnelle automatische Erstreaktion</li>
-              <li>Strukturierte Erfassung jeder Anfrage</li>
-              <li>Weniger manueller Aufwand im Tagesgeschäft</li>
+              <li>Ein Formular oder eine E-Mail-Adresse als Startpunkt</li>
+              <li>Automatische Erstreaktion</li>
+              <li>Strukturierte Erfassung der Anfrage</li>
+              <li>Einfacher Routing-Prozess</li>
             </ul>
-            <a href="#kontakt" class="btn btn-secondary">Starter anfragen</a>
           </article>
 
           <article class="price-card featured">
-            <span class="featured-tag">Empfohlen</span>
-            <h3>Professional</h3>
-            <p>Für Unternehmen, die Anfragen effizient priorisieren und schneller in Abschlüsse umwandeln möchten.</p>
-            <div class="price">ab 249 €<span class="muted" style="font-size:1rem; font-weight:600;"> / Monat</span></div>
+            <span class="featured-tag">Häufig nachgefragt</span>
+            <h3>Erweitert</h3>
+            <p>Für Unternehmen, die Anfragen priorisieren und vertrieblich besser verarbeiten möchten.</p>
             <ul>
               <li>Mehrere Eingangskanäle in einem Prozess</li>
-              <li>Lead-Scoring und automatische Priorisierung</li>
-              <li>Schnellere Reaktion auf wertvolle Anfragen</li>
-              <li>Interne Benachrichtigungen und Follow-ups</li>
-              <li>Mehr Effizienz im Vertrieb</li>
+              <li>Lead-Scoring und Priorisierung</li>
+              <li>Interne Benachrichtigungen</li>
+              <li>Passende automatische Rückmeldungen</li>
             </ul>
-            <a href="#kontakt" class="btn btn-primary">Professional anfragen</a>
           </article>
 
           <article class="price-card">
-            <h3>Premium</h3>
-            <p>Für Unternehmen, die ihre Anfragen vollständig automatisieren und direkt in konkrete Angebote überführen möchten.</p>
-            <div class="price">ab 499 €<span class="muted" style="font-size:1rem; font-weight:600;"> / Monat</span></div>
+            <h3>Individuell</h3>
+            <p>Für Unternehmen mit spezifischen Regeln, CRM-Anbindung oder Angebotsautomatisierung.</p>
             <ul>
-              <li>Individuelle Prozesslogik für Ihre Abläufe</li>
-              <li>Formular, E-Mail und Ticketsystem kombinierbar</li>
-              <li>Automatisierte Angebotsvorbereitung oder Angebotsversand</li>
-              <li>Regeln je Kundentyp oder Anfrageart</li>
-              <li>Integration in CRM oder Tabellen</li>
+              <li>Individuelle Prozesslogik</li>
+              <li>Systemübergreifende Integrationen</li>
+              <li>Angebotsvorbereitung oder Angebotsversand</li>
+              <li>Anpassung an interne Abläufe und Rollen</li>
             </ul>
-            <a href="#kontakt" class="btn btn-secondary">Premium anfragen</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="demo">
+      <div class="container">
+        <span class="eyebrow">Produktdemo</span>
+        <h2>Sehen Sie die Funktionsweise von Automira in einer kurzen Demo</h2>
+        <p class="lead">
+          Statt eines Testzugangs erhalten Interessenten einen kompakten Einblick in den Ablauf, die Logik und den Nutzen der Lösung. So entsteht von Anfang an ein realistisches Bild der Einsatzmöglichkeiten.
+        </p>
+
+        <div class="demo-layout">
+          <div class="demo-placeholder">
+            <div class="demo-placeholder-inner">
+              <div class="demo-play">▶</div>
+              <h3>Demo-Video folgt in Kürze</h3>
+              <p class="muted">
+                Hier wird in Kürze eine kurze Produktdemo eingebunden, die den Ablauf von Anfrageeingang, Analyse, Priorisierung und Reaktion zeigt.
+              </p>
+            </div>
+          </div>
+
+          <article class="demo-card">
+            <h3>Was die Produktdemo zeigt</h3>
+            <ul>
+              <li>Wie Anfragen aus Formular, E-Mail oder Ticketsystem erfasst werden</li>
+              <li>Wie Automira Inhalte analysiert und priorisiert</li>
+              <li>Wie automatische Antworten und interne Hinweise ausgelöst werden</li>
+              <li>Wie sich der Prozess an unterschiedliche Unternehmen anpassen lässt</li>
+            </ul>
+            <a href="#kontakt" class="btn btn-primary">Produktdemo anfragen</a>
           </article>
         </div>
       </div>
@@ -779,7 +925,7 @@
 
     <section class="section section-alt" id="kontakt">
       <div class="container">
-        <span class="eyebrow">Demo anfragen</span>
+        <span class="eyebrow">Beratung anfragen</span>
         <h2>Beschreiben Sie kurz, wie Ihre Anfragen heute eingehen</h2>
         <p class="lead">
           Diese Informationen helfen uns, Ihre Anforderungen schnell einzuordnen und eine passende Automatisierung für Ihr Unternehmen zu konzipieren – unabhängig davon, ob Ihre Anfragen über ein Formular, eine E-Mail-Adresse oder ein Ticketsystem eingehen.
@@ -884,7 +1030,7 @@
                 </div>
               </div>
 
-              <button type="submit" class="btn btn-primary">Kostenlose Demo anfragen</button>
+              <button type="submit" class="btn btn-primary">Beratung anfragen</button>
               <p id="form-status" class="small-note"></p>
               <p class="small-note">
                 Mit dem Absenden erklären Sie sich mit der Verarbeitung Ihrer Daten gemäß unserer
