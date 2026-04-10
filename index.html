@@ -464,10 +464,7 @@
     }
 
     .form-wrap {
-      display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 26px;
-      align-items: start;
+      display: block;
       margin-top: 40px;
     }
 
@@ -495,8 +492,8 @@
 
     .form-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px 16px;
     }
 
     label {
@@ -532,8 +529,8 @@
 
     .checkbox-group {
       display: grid;
-      grid-template-columns: repeat(2, minmax(240px, 1fr));
-      gap: 12px 24px;
+      grid-template-columns: repeat(2, minmax(260px, 1fr));
+      gap: 14px 28px;
       margin-top: 10px;
     }
 
@@ -585,7 +582,6 @@
 
     @media (max-width: 1024px) {
       .hero-grid,
-      .form-wrap,
       .grid-3,
       .grid-4,
       .steps,
@@ -963,7 +959,7 @@
         </p>
 
         <div class="form-wrap">
-          <aside class="info-panel">
+          <div class="info-panel" style="margin-top: 40px;">
             <h3>Was wir vorab verstehen sollten</h3>
             <ul class="contact-points">
               <li>Welche Anfragequellen aktuell genutzt werden</li>
@@ -974,9 +970,9 @@
             <p class="small-note" style="margin-top: 20px;">
               Auf Basis dieser Angaben bereiten wir ein Erstgespräch und ein individuelles Angebot vor. Ein unmittelbarer Online-Kauf erfolgt derzeit nicht über die Website.
             </p>
-          </aside>
+          </div>
 
-          <div class="form-panel">
+          <div class="form-panel" style="margin-top: 24px;">
             <form id="contact-form">
               <input type="hidden" id="customer-id" name="customer-id" value="automira_website" />
 
@@ -996,7 +992,7 @@
                   <input id="company" name="company" type="text" placeholder="Muster GmbH" />
                 </div>
 
-                <div>
+                <div class="full">
                   <label>Woher stammen Ihre Anfragen?</label>
                   <div class="checkbox-group">
                     <label class="checkbox-item">
