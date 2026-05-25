@@ -3,24 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Impressum – Automira</title>
-  <meta
-    name="description"
-    content="Impressum von Automira – Angaben zum Diensteanbieter gemäß § 5 DDG."
-  />
+  <title>Impressum – AUTOMIRA</title>
+  <meta name="description" content="Impressum von AUTOMIRA – Angaben zum Diensteanbieter gemäß § 5 DDG." />
+
+  <link rel="icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_32x32.png" />
+  <link rel="apple-touch-icon" href="assets/apple_touch_icon.png" />
+  <meta name="theme-color" content="#0B1220" />
 
   <style>
+
     :root {
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --text: #111827;
-      --muted: #6b7280;
-      --bg: #ffffff;
-      --surface: #f3f4f6;
-      --surface-2: #eff6ff;
-      --border: #e5e7eb;
-      --shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
-      --radius: 18px;
+      --deep-navy: #0B1220;
+      --automira-blue: #2563EB;
+      --automira-blue-dark: #1D4ED8;
+      --nexus-teal: #14B8A6;
+      --light-gray: #F8FAFC;
+      --soft-gray: #E2E8F0;
+      --slate-gray: #64748B;
+      --text-primary: #0F172A;
+      --white: #FFFFFF;
+      --warning: #F59E0B;
+      --error: #EF4444;
+      --shadow: 0 18px 50px rgba(15, 23, 42, 0.10);
+      --radius: 22px;
       --max-width: 1180px;
     }
 
@@ -30,20 +36,24 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.6;
+      font-family: Inter, Manrope, Arial, sans-serif;
+      color: var(--text-primary);
+      background: var(--light-gray);
+      line-height: 1.65;
     }
 
     a {
-      color: var(--primary);
+      color: inherit;
       text-decoration: none;
     }
 
     a:hover {
-      text-decoration: underline;
+      color: var(--automira-blue);
     }
 
     .container {
@@ -54,227 +64,422 @@
     header {
       position: sticky;
       top: 0;
-      background: rgba(255,255,255,0.95);
-      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.95);
     }
 
     .nav {
-      min-height: 70px;
+      min-height: 76px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 28px;
     }
 
-    .logo {
-      font-weight: 800;
-      font-size: 1.1rem;
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 160px;
     }
 
-    .logo span {
-      color: var(--primary);
+    .brand-logo {
+      display: block;
+      height: 34px;
+      width: auto;
     }
 
     .nav-links {
       display: flex;
-      gap: 20px;
+      align-items: center;
+      gap: 24px;
       list-style: none;
-      color: var(--muted);
+      color: var(--slate-gray);
+      font-size: 0.94rem;
+      font-weight: 700;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--automira-blue);
+      color: var(--white);
+      font-weight: 800;
+      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.22);
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      color: var(--white);
+      background: var(--automira-blue-dark);
     }
 
     .hero {
-      padding: 60px 0 30px;
-      background: linear-gradient(180deg, #fff 0%, #f8fbff 100%);
+      background:
+        radial-gradient(circle at 18% 16%, rgba(20, 184, 166, 0.16), transparent 30%),
+        radial-gradient(circle at 82% 12%, rgba(37, 99, 235, 0.20), transparent 34%),
+        linear-gradient(135deg, #0B1220 0%, #111B31 100%);
+      color: var(--white);
+      padding: 82px 0 66px;
+    }
+
+    .hero-inner {
+      max-width: 860px;
     }
 
     .eyebrow {
-      background: var(--surface-2);
-      color: var(--primary);
-      padding: 6px 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid rgba(20, 184, 166, 0.35);
       border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.85rem;
-      display: inline-block;
-      margin-bottom: 10px;
+      color: #B7FFF3;
+      background: rgba(20, 184, 166, 0.10);
+      font-size: 0.88rem;
+      font-weight: 800;
+      margin-bottom: 22px;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.15;
+      letter-spacing: -0.03em;
     }
 
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-
-    .lead {
-      color: var(--muted);
-    }
-
-    .section {
-      padding: 40px 0 80px;
-    }
-
-    .card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: var(--shadow);
-      max-width: 800px;
-    }
-
-    .card section + section {
-      margin-top: 25px;
-      padding-top: 25px;
-      border-top: 1px solid var(--border);
+      font-size: clamp(2.3rem, 4.8vw, 4.1rem);
+      margin-bottom: 18px;
     }
 
     h2 {
-      font-size: 1.2rem;
-      margin-bottom: 8px;
+      font-size: 1.35rem;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      font-size: 1.08rem;
+      margin: 22px 0 8px;
+    }
+
+    .lead {
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 1.1rem;
+      max-width: 780px;
+    }
+
+    .section {
+      padding: 54px 0 92px;
+    }
+
+    .content-layout {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    .side-card,
+    .content-card {
+      background: var(--white);
+      border: 1px solid var(--soft-gray);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .side-card {
+      position: sticky;
+      top: 100px;
+      padding: 22px;
+    }
+
+    .side-card strong {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+
+    .side-card ul {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .side-card a {
+      display: block;
+      color: var(--slate-gray);
+      font-size: 0.93rem;
+      font-weight: 700;
+      padding: 8px 10px;
+      border-radius: 12px;
+    }
+
+    .side-card a:hover {
+      color: var(--automira-blue);
+      background: #EFF6FF;
+    }
+
+    .content-card {
+      padding: 34px;
+    }
+
+    .content-card section + section {
+      margin-top: 30px;
+      padding-top: 30px;
+      border-top: 1px solid var(--soft-gray);
+    }
+
+    p, ul {
+      margin-top: 10px;
+    }
+
+    ul {
+      padding-left: 22px;
+    }
+
+    li + li {
+      margin-top: 8px;
     }
 
     .muted {
-      color: var(--muted);
-      font-size: 0.9rem;
+      color: var(--slate-gray);
     }
 
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 25px 0;
-      color: var(--muted);
-      font-size: 0.9rem;
+    .note {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      border: 1px solid #BFDBFE;
+      background: #EFF6FF;
+      color: #1E3A8A;
+      font-size: 0.95rem;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      color: var(--automira-blue);
+      font-weight: 800;
+    }
+
+    .footer {
+      background: var(--white);
+      padding: 30px 0 46px;
+      color: var(--slate-gray);
+      font-size: 0.95rem;
+      border-top: 1px solid var(--soft-gray);
     }
 
     .footer-inner {
       display: flex;
       justify-content: space-between;
+      gap: 20px;
       flex-wrap: wrap;
     }
 
-    @media (max-width: 768px) {
+    .footer a {
+      color: var(--slate-gray);
+      font-weight: 700;
+    }
+
+    .footer a:hover {
+      color: var(--automira-blue);
+    }
+
+    @media (max-width: 980px) {
       .nav {
-        flex-direction: column;
-        gap: 10px;
+        flex-wrap: wrap;
+        padding: 14px 0;
       }
 
       .nav-links {
-        flex-wrap: wrap;
+        order: 3;
+        width: 100%;
         justify-content: center;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .content-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .side-card {
+        position: static;
+      }
+
+      .side-card ul {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
+
+    @media (max-width: 700px) {
+      .container {
+        width: min(calc(100% - 28px), var(--max-width));
+      }
+
+      .hero {
+        padding: 58px 0 48px;
+      }
+
+      .content-card {
+        padding: 24px;
+      }
+
+      .nav-cta {
+        width: 100%;
+      }
+
+      .brand-logo {
+        height: 30px;
+      }
+
+      .side-card ul {
+        grid-template-columns: 1fr;
+      }
+    }
+
   </style>
 </head>
-
 <body>
 
-<header>
-  <div class="container nav">
-    <a href="index.html" class="logo">Auto<span>mira</span></a>
-    <ul class="nav-links">
-      <li><a href="index.html#loesung">Lösung</a></li>
-      <li><a href="index.html#preise">Preise</a></li>
-      <li><a href="index.html#kontakt">Demo</a></li>
-    </ul>
-  </div>
-</header>
-
-<main>
-
-  <section class="hero">
-    <div class="container">
-      <span class="eyebrow">Rechtliche Angaben</span>
-      <h1>Impressum</h1>
-      <p class="lead">Angaben gemäß den gesetzlichen Informationspflichten.</p>
+  <header>
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="AUTOMIRA Startseite">
+        <img class="brand-logo" src="assets/automira_logo_horizontal_color.png" alt="AUTOMIRA" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#plattform">Plattform</a></li>
+        <li><a href="index.html#anwendungsfaelle">Anwendungsfälle</a></li>
+        <li><a href="index.html#ablauf">Ablauf</a></li>
+        <li><a href="index.html#sicherheit">Sicherheit</a></li>
+        <li><a href="index.html#preise">Preise</a></li>
+      </ul>
+      <a class="nav-cta" href="index.html#kontakt">Erstgespräch anfragen</a>
     </div>
-  </section>
+  </header>
 
-  <section class="section">
-    <div class="container">
-      <div class="card">
 
-        <section>
-          <h2>Angaben gemäß § 5 DDG</h2>
-          <p>
-            Luisa Hoppmann<br>
-            Angerweg 16<br>
-            86986 Schwabbruck<br>
-            Deutschland
-          </p>
-        </section>
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <span class="eyebrow">Rechtliche Angaben</span>
+        <h1>Impressum</h1>
+        <p class="lead">
+          Angaben zum Diensteanbieter und Kontaktmöglichkeiten für AUTOMIRA.
+        </p>
+      </div>
+    </section>
 
-        <section>
-          <h2>Kontakt</h2>
-          <p>
-            E-Mail:
-            <a href="mailto:info@automira.de">info@automira.de</a><br>
-            Telefon: +49 8868 1819 898
-          </p>
-        </section>
+    <section class="section">
+      <div class="container content-layout">
+        <aside class="side-card" aria-label="Seitennavigation">
+          <strong>Auf dieser Seite</strong>
+          <ul>
+            <li><a href="#anbieter">Anbieter</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+            <li><a href="#umsatzsteuer">Umsatzsteuer</a></li>
+            <li><a href="#inhalt">Inhalt</a></li>
+            <li><a href="#links">Links</a></li>
+            <li><a href="#urheberrecht">Urheberrecht</a></li>
+          </ul>
+        </aside>
 
-        <section>
-          <h2>Umsatzsteuer</h2>
-          <p>
-            Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG:<br>
-            [f]
-          </p>
-        </section>
+        <div class="content-card">
+          <section id="anbieter">
+            <h2>Angaben gemäß § 5 DDG</h2>
+            <p>
+              Luisa Hoppmann<br />
+              Angerweg 16<br />
+              86986 Schwabbruck<br />
+              Deutschland
+            </p>
+          </section>
 
-        <section>
-          <h2>Verantwortlich für den Inhalt</h2>
-          <p>
-            Luisa Hoppmann<br>
-            Angerweg 16<br>
-            86986 Schwabbruck<br>
-            Deutschland
-          </p>
-          <p class="muted">
-            Dieser Abschnitt ist für nicht-journalistische Websites in dieser Form ausreichend.
-          </p>
-        </section>
+          <section id="kontakt">
+            <h2>Kontakt</h2>
+            <p>
+              E-Mail:
+              <a href="mailto:info@automira.de">info@automira.de</a><br />
+              Telefon: +49 8868 1819 898
+            </p>
+          </section>
 
-        <section>
-          <h2>Haftung für Inhalte</h2>
-          <p>
-            Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt.
-            Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.
-          </p>
-        </section>
+          <section id="umsatzsteuer">
+            <h2>Umsatzsteuer</h2>
+            <p>
+              Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG:<br />
+              [bitte ergänzen, sobald vorhanden]
+            </p>
+          </section>
 
-        <section>
-          <h2>Haftung für Links</h2>
-          <p>
-            Unsere Website enthält Links zu externen Websites Dritter,
-            auf deren Inhalte wir keinen Einfluss haben. Für diese fremden Inhalte übernehmen wir keine Gewähr.
-          </p>
-        </section>
+          <section>
+            <h2>Verantwortlich für den Inhalt</h2>
+            <p>
+              Luisa Hoppmann<br />
+              Angerweg 16<br />
+              86986 Schwabbruck<br />
+              Deutschland
+            </p>
+          </section>
 
-        <section>
-          <h2>Urheberrecht</h2>
-          <p>
-            Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten
-            unterliegen dem deutschen Urheberrecht.
-          </p>
-        </section>
+          <section id="inhalt">
+            <h2>Haftung für Inhalte</h2>
+            <p>
+              Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit,
+              Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.
+              Gesetzliche Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen
+              bleiben hiervon unberührt.
+            </p>
+          </section>
 
-        <section>
-          <h2>Zurück zur Website</h2>
-          <p>
-            <a href="index.html">Zur Startseite</a>
-          </p>
-        </section>
+          <section id="links">
+            <h2>Haftung für Links</h2>
+            <p>
+              Diese Website kann Links zu externen Websites Dritter enthalten, auf deren Inhalte wir
+              keinen Einfluss haben. Für diese fremden Inhalte übernehmen wir keine Gewähr. Für die Inhalte
+              der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+            </p>
+          </section>
 
+          <section id="urheberrecht">
+            <h2>Urheberrecht</h2>
+            <p>
+              Die durch den Seitenbetreiber erstellten Inhalte und Werke auf dieser Website unterliegen
+              dem deutschen Urheberrecht. Vervielfältigung, Bearbeitung, Verbreitung oder sonstige Nutzung
+              außerhalb der Grenzen des Urheberrechts bedürfen der vorherigen schriftlichen Zustimmung des
+              jeweiligen Rechteinhabers.
+            </p>
+          </section>
+
+          <section>
+            <h2>Zurück zur Website</h2>
+            <p>
+              <a class="back-link" href="index.html">← Zur Startseite</a>
+            </p>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 AUTOMIRA. Alle Rechte vorbehalten.</div>
+      <div>
+        <a href="index.html">Startseite</a> ·
+        <a href="impressum.html">Impressum</a> ·
+        <a href="datenschutz.html">Datenschutz</a>
       </div>
     </div>
-  </section>
-
-</main>
-
-<footer>
-  <div class="container footer-inner">
-    <div>© 2026 Automira</div>
-    <div>
-      <a href="index.html">Startseite</a> ·
-      <a href="datenschutz.html">Datenschutz</a>
-    </div>
-  </div>
-</footer>
+  </footer>
 
 </body>
 </html>
