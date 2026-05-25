@@ -8,6 +8,13 @@
     name="description"
     content="AUTOMIRA unterstützt Unternehmen dabei, eingehende E-Mail- und Formularvorgänge kontrolliert zu erfassen, KI-gestützt einzuordnen, zu priorisieren und nachvollziehbar weiterzubearbeiten."
   />
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_32x32.png" />
+  <link rel="apple-touch-icon" href="assets/apple_touch_icon.png" />
+  <meta property="og:title" content="AUTOMIRA – Kontrollierte Automatisierung für E-Mail- und Formularvorgänge" />
+  <meta property="og:description" content="Eingänge erkennen, priorisieren und nachvollziehbar weiterbearbeiten – mit AUTOMIRA." />
+  <meta property="og:image" content="assets/automira_open_graph_1200x630.png" />
+  <meta name="theme-color" content="#0B1220" />
   <style>
     :root {
       --deep-navy: #0b1220;
@@ -225,45 +232,10 @@
       color: var(--deep-navy);
     }
 
-    .brand-mark {
-      width: 36px;
-      height: 36px;
-      border-radius: 12px;
-      background:
-        radial-gradient(circle at 78% 24%, var(--nexus-teal) 0 6px, transparent 7px),
-        radial-gradient(circle at 23% 76%, var(--automira-blue) 0 5px, transparent 6px),
-        linear-gradient(135deg, var(--deep-navy) 0%, var(--deep-navy-2) 100%);
-      position: relative;
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.18);
-    }
-
-    .brand-mark::before,
-    .brand-mark::after {
-      content: "";
-      position: absolute;
-      background: rgba(255, 255, 255, 0.86);
-      border-radius: 999px;
-      transform-origin: center;
-    }
-
-    .brand-mark::before {
-      width: 21px;
-      height: 3px;
-      left: 9px;
-      top: 18px;
-      transform: rotate(-47deg);
-    }
-
-    .brand-mark::after {
-      width: 18px;
-      height: 3px;
-      left: 9px;
-      top: 19px;
-      transform: rotate(47deg);
-    }
-
-    .brand-word {
-      font-size: 1.04rem;
+    .brand-logo {
+      display: block;
+      width: 168px;
+      height: auto;
     }
 
     .nav-links {
@@ -737,6 +709,45 @@
       font-weight: 700;
     }
 
+    .price-breakdown {
+      display: grid;
+      gap: 10px;
+      margin: 18px 0 6px;
+      padding: 16px;
+      border: 1px solid var(--soft-gray);
+      border-radius: 16px;
+      background: var(--light-gray);
+    }
+
+    .price-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: baseline;
+      font-size: 0.95rem;
+      color: var(--slate-gray);
+    }
+
+    .price-line strong {
+      color: var(--text-primary);
+      font-size: 1.18rem;
+      white-space: nowrap;
+    }
+
+    .included-volume {
+      margin-top: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: var(--surface-teal);
+      color: #0f766e;
+      font-weight: 900;
+      font-size: 0.9rem;
+    }
+
     .price-card ul,
     .contact-card ul,
     .addon-card ul {
@@ -1071,8 +1082,7 @@
   <header>
     <div class="container nav">
       <a href="#top" class="brand" aria-label="AUTOMIRA Startseite">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span class="brand-word">AUTOMIRA</span>
+        <img class="brand-logo" src="assets/automira_logo_horizontal_color.svg" alt="AUTOMIRA" />
       </a>
       <ul class="nav-links">
         <li><a href="#plattform">Plattform</a></li>
@@ -1416,14 +1426,17 @@
             <div class="package-label">Starter</div>
             <h3>Für den kontrollierten Einstieg</h3>
             <p>Ideal für eine klar abgegrenzte Automatisierung mit einem Eingangskanal und überschaubarem Volumen.</p>
-            <div class="price-main">Einführungspaket</div>
-            <div class="price-sub">Einrichtung + monatliche Nutzung</div>
+            <div class="price-breakdown" aria-label="Starter Preise">
+              <div class="price-line"><span>Einrichtung einmalig</span><strong>690 €</strong></div>
+              <div class="price-line"><span>Monatliche Nutzung</span><strong>149 € / Monat</strong></div>
+            </div>
+            <div class="included-volume">100 Vorgänge / Monat inklusive</div>
             <ul>
               <li>1 konkreter Use Case</li>
               <li>1 Einstiegskanal, z. B. E-Mail-Weiterleitung oder Webformular</li>
-              <li>Monatskontingent für automatisierte Vorgänge</li>
               <li>Grundlegende Einordnung und Weiterleitung</li>
-              <li>Geeignet für erste produktive Automatisierung</li>
+              <li>Kontrollierte Einrichtung mit Test und Freigabe</li>
+              <li>Geeignet für die erste produktive Automatisierung</li>
             </ul>
             <a href="#kontakt" class="btn btn-secondary">Starter besprechen</a>
           </article>
@@ -1433,10 +1446,13 @@
             <div class="package-label">Professional</div>
             <h3>Für strukturierte Vorgangsbearbeitung</h3>
             <p>Für Unternehmen, die mehr Volumen, klarere Priorisierung und eine robustere Bearbeitungslogik benötigen.</p>
-            <div class="price-main">Auf Anfrage</div>
-            <div class="price-sub">passend zu Use Case und Volumen</div>
+            <div class="price-breakdown" aria-label="Professional Preise">
+              <div class="price-line"><span>Einrichtung einmalig</span><strong>1.490 €</strong></div>
+              <div class="price-line"><span>Monatliche Nutzung</span><strong>349 € / Monat</strong></div>
+            </div>
+            <div class="included-volume">500 Vorgänge / Monat inklusive</div>
             <ul>
-              <li>Erweiterter Use Case oder mehrere Eingangsarten</li>
+              <li>Bis zu 2 Eingangskanäle oder ein erweiterter Use Case</li>
               <li>Quick Win / Long Shot / Low Fit-Logik</li>
               <li>Antwortvorschläge oder Handlungsempfehlungen</li>
               <li>Kontrollierte Tests und Freigabe vor Go-Live</li>
@@ -1449,8 +1465,11 @@
             <div class="package-label">Enterprise</div>
             <h3>Für individuelle Abläufe</h3>
             <p>Für komplexere Anforderungen, höhere Volumen, mehrere Workflows oder besondere Integrationswünsche.</p>
-            <div class="price-main">Individuell</div>
-            <div class="price-sub">nach Abstimmung und Aufwand</div>
+            <div class="price-breakdown" aria-label="Enterprise Preise">
+              <div class="price-line"><span>Einrichtung einmalig</span><strong>individuell</strong></div>
+              <div class="price-line"><span>Monatliche Nutzung</span><strong>individuell</strong></div>
+            </div>
+            <div class="included-volume">ab 1.000+ Vorgänge / Monat nach Abstimmung</div>
             <ul>
               <li>Mehrere oder individuelle Automatisierungen</li>
               <li>Erweiterte Routing- und Freigabelogik</li>
